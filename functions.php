@@ -17,8 +17,8 @@ if ( ! current_user_can( 'manage_options' ) ) {
 // Enqueing styles and scripts
 function add_theme_scripts(){
   // styles
-  wp_enqueue_style( 'style', get_stylesheet_uri(), array('fonts'));
-  wp_enqueue_style( 'fonts', get_template_directory_uri() . '/inc/webfont/stylesheet.css', array(), '1.0', 'all');
+  wp_enqueue_style( 'style', get_stylesheet_uri(), array('base-css'));
+  wp_enqueue_style( 'base-css', get_template_directory_uri() . '/css/base.css', array(), '1.0', 'all');
 
   // scripts
   wp_enqueue_script( 'scripts', get_template_directory_uri() . '/js/scripts.js', array('jquery'));
