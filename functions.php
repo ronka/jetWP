@@ -5,14 +5,15 @@
  *  Custom functions, support, custom post types and more.
  */
 
-/**
- * Hooks and Actions
- */
+/*********************************
+  General Settings
+**********************************/
 
 // Admin bar only for admins
 if ( ! current_user_can( 'manage_options' ) ) {
   show_admin_bar( false );
 }
+
 
 // Enqueing styles and scripts
 function add_theme_scripts(){
@@ -25,11 +26,14 @@ function add_theme_scripts(){
 }
 add_action('wp_enqueue_scripts', 'add_theme_scripts');
 
-// Register menu
-function register_menu(){
-  register_nav_menu( 'main-menu', 'Main Menu' );
+
+// thumbnail support
+add_theme_support( 'post-thumbnails' );
+
+if ( function_exists( 'add_image_size' ) ) { 
+  add_image_size( 'coupon-thumbnail', 220, 135, true );
 }
-add_action('init', 'register_menu' );
+
 
 // custom fonts
 add_filter('mce_buttons', 'add_font_selection_to_tinymce');
@@ -38,74 +42,36 @@ function add_font_selection_to_tinymce($buttons) {
     return $buttons;
 }
 
-// Customizer page
-function jetwp_customize_register($wp_customize){
-  // Global theme settings
-  $wp_customize->add_section("jetwp-settings", array(
-    "title" => "הגדרות כלליות",
-    "priority" => 30,
-  ));
-  // Logo
-  $wp_customize->add_setting("settings-logo");
-  $wp_customize->add_control(new WP_Customize_Image_Control( $wp_customize,"settings-logo", array(
-      "label" => "לוגו",
-      "section" => "jetwp-settings",
-      "settings" => "settings-logo"
-    )
-  ));
-}
-add_action("customize_register","jetwp_customize_register");
-
 /*********************************
-  Functions
+  Includes
 **********************************/
 
-// main menu config
-function jetwp_nav(){
-  wp_nav_menu(
-    array(
-      'theme_location'  => 'main-menu',
-      'menu'            => '',
-      'container'       => 'div',
-      'container_class' => 'menu-{menu slug}-container',
-      'container_id'    => '',
-      'menu_class'      => 'menu',
-      'menu_id'         => '',
-      'echo'            => true,
-      'fallback_cb'     => 'wp_page_menu',
-      'before'          => '',
-      'after'           => '',
-      'link_before'     => '',
-      'link_after'      => '',
-      'items_wrap'      => '<ul>%3$s</ul>',
-      'depth'           => 0,
-      'walker'          => ''
-    )
-  );
-}
+/**
+ * Menus
+ */
+require_once( __DIR__ . '/includes/menus.php'); 
 
-// If Dynamic Sidebar Exists
-if (function_exists('register_sidebar'))
-{
-    // Define Sidebar Widget Area 1
-  register_sidebar(array(
-    'name' => 'איזור וידג\'טים 1',
-    'description' => 'תיאור האיזור',
-    'id' => 'widget-area-1',
-    'before_widget' => '<div id="%1$s" class="%2$s">',
-    'after_widget' => '</div>',
-    'before_title' => '<h3>',
-    'after_title' => '</h3>'
-    ));
+/**
+ * Custom Posts Type
+ */
+require_once( __DIR__ . '/includes/custom-posts-type.php'); 
 
-    // Define Sidebar Widget Area 2
-  register_sidebar(array(
-    'name' => 'איזור וידג\'טים 2',
-    'description' => 'תיאור האיזור',
-    'id' => 'widget-area-2',
-    'before_widget' => '<div id="%1$s" class="%2$s">',
-    'after_widget' => '</div>',
-    'before_title' => '<h3>',
-    'after_title' => '</h3>'
-    ));
-}
+/**
+ * Custom Taxonomy
+ */
+require_once(__DIR__ . 'includes/custom-taxonomy.php')
+
+/**
+ * Customizer page
+ */
+require_once( __DIR__ . '/includes/customizer.php');  
+
+/**
+ * Sidebars
+ */
+require_once( __DIR__ . '/includes/sidebars.php'); 
+
+/**
+ * Ajax Stuff
+ */
+require_once( __DIR__ . '/includes/ajax.php');
