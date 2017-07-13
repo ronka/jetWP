@@ -12,6 +12,8 @@ ul, ol {
 }
 
 .full-width { width: 100%; }
+.full-height { height: 100%; }
+.auto-height { height: auto; }
 
 a, button, .btn, .form-control {
   text-decoration: none;
@@ -19,6 +21,10 @@ a, button, .btn, .form-control {
   -ms-transition: all 400ms linear 0ms;
   -o-transition: all 400ms linear 0ms;
   transition: all 400ms linear 0ms;
+}
+
+.btn.btn-rounded {
+  border-radius: 999px !important;
 }
 
 /*********************************
@@ -56,23 +62,30 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 
 /** padding **/
 .p-0 { padding: 0 !important; }
+.p-10 { padding: 10px; }
 .p-20 { padding: 20px; }
 
+.pr-10 { padding-right: 10px; }
 .pr-15 { padding-right: 15px; }
 .pr-20 { padding-right: 20px; }
 
+.pl-10 { padding-left: 10px; }
 .pl-15 { padding-left: 15px; }
 .pl-20 { padding-left: 20px; }
 
+.pt-10 { padding-top: 10px; }
 .pt-15 { padding-top: 15px; }
 .pt-20 { padding-top: 20px; }
 .pt-30 { padding-top: 30px; }
+.pt-40 { padding-top: 40px; }
 .pt-70 { padding-top: 70px; }
 
 .pb-15 { padding-bottom: 15px; }
 .pb-30 { padding-bottom: 30px; }
+.pb-60 { padding-bottom: 60px; }
 
 .prl-20 { padding-right: 20px; padding-left: 20px; }
+
 .ptb-10 { padding-top: 10px; padding-bottom: 10px; }
 .ptb-15 { padding-top: 15px; padding-bottom: 15px; }
 .ptb-30 { padding-top: 30px; padding-bottom: 30px; }
@@ -90,11 +103,15 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 .mb-20 { margin-bottom: 20px; }
 .mb-30 { margin-bottom: 30px; }
 .mb-40 { margin-bottom: 40px; }
+.mb-80 { margin-bottom: 80px; }
 
 .mt-10 { margin-top: 10px; }
 .mt-15 { margin-top: 15px; }
 .mt-20 { margin-top: 20px; }
 .mt-30 { margin-top: 30px; }
+
+.mrl-10 { margin-right:10px; margin-left:10px; }
+.mrl-20 { margin-right:20px; margin-left:20px; }
 
 .mtb-10 { margin-top: 10px; margin-bottom: 10px; }
 .mtb-20 { margin-top: 20px; margin-bottom: 20px; }
@@ -124,9 +141,10 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 @media (max-width: 992px){
 }
 @media (max-width: 768px){
-  .text-xs-center{
-    text-align:center;
-  }
+  .full-xs-height { height: 100%; }
+  .text-xs-right { text-align: right; }
+  .text-xs-center { text-align: center; }
+  .m-xs-10 { margin: 10px !important; }
 }
 @media (max-width: 640px){
 }
