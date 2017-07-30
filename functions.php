@@ -59,7 +59,7 @@ require_once( __DIR__ . '/includes/custom-posts-type.php');
 /**
  * Custom Taxonomy
  */
-require_once(__DIR__ . 'includes/custom-taxonomy.php')
+require_once(__DIR__ . '/includes/custom-taxonomy.php');
 
 /**
  * Customizer page
