@@ -14,33 +14,62 @@ if ( ! current_user_can( 'manage_options' ) ) {
   show_admin_bar( false );
 }
 
-
-// Enqueing styles and scripts
-function add_theme_scripts(){
+/**
+ * Add Theme CSS fields
+ *
+ * @return void
+ */
+function add_theme_stylesheets(){
   // styles
   wp_enqueue_style( 'style', get_stylesheet_uri(), array('base-css'));
   wp_enqueue_style( 'base-css', get_template_directory_uri() . '/css/base.css', array(), '1.0', 'all');
+}
+add_action('wp_enqueue_scripts', 'add_theme_stylesheets');
 
-  // scripts
+/**
+ * Add Theme JS scripts
+ *
+ * @return void
+ */
+function add_theme_scripts() {
   wp_enqueue_script( 'scripts', get_template_directory_uri() . '/js/scripts.js', array('jquery'));
 }
-add_action('wp_enqueue_scripts', 'add_theme_scripts');
+add_action( 'wp_enqueue_scripts', 'add_theme_scripts' ); 
 
+/**
+ * Add Theme Admin Stylesheets
+ *
+ * @return void
+ */
+function load_custom_wp_admin_style() {
+  wp_enqueue_style( 'admin-style',  get_template_directory_uri() . '/css/admin-style.css' );
+}
+add_action( 'admin_enqueue_scripts', 'load_custom_wp_admin_style' );
+
+
+/**
+ * Add google maps api key to ACF
+ * 
+ * @return $api
+ */
+function my_acf_google_map_api( $api ){
+  $api['key'] = '';
+	return $api;
+}
+//add_filter('acf/fields/google_map/api', 'my_acf_google_map_api');
 
 // thumbnail support
-add_theme_support( 'post-thumbnails' );
-
 if ( function_exists( 'add_image_size' ) ) { 
   add_image_size( 'coupon-thumbnail', 220, 135, true );
 }
-
+add_theme_support( 'post-thumbnails' );
 
 // custom fonts
-add_filter('mce_buttons', 'add_font_selection_to_tinymce');
 function add_font_selection_to_tinymce($buttons) {
-    array_push($buttons, 'fontselect');
-    return $buttons;
+  array_push($buttons, 'fontselect');
+  return $buttons;
 }
+add_filter('mce_buttons', 'add_font_selection_to_tinymce');
 
 /*********************************
   Includes
@@ -75,3 +104,13 @@ require_once( __DIR__ . '/includes/sidebars.php');
  * Ajax Stuff
  */
 require_once( __DIR__ . '/includes/ajax.php');
+
+/**
+ * Share
+ */
+require_once( __DIR__ . '/includes/share.php');
+
+/**
+ * Users Restrictions
+ */
+require_once( __DIR__ . '/includes/users-restrictions.php');
