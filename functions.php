@@ -46,25 +46,30 @@ function load_custom_wp_admin_style() {
 }
 add_action( 'admin_enqueue_scripts', 'load_custom_wp_admin_style' );
 
-// add google map api key to acf
-//add_filter('acf/fields/google_map/api', 'my_acf_google_map_api');
+
+/**
+ * Add google maps api key to ACF
+ * 
+ * @return $api
+ */
 function my_acf_google_map_api( $api ){
-	$api['key'] = '';
+  $api['key'] = '';
 	return $api;
 }
+//add_filter('acf/fields/google_map/api', 'my_acf_google_map_api');
 
 // thumbnail support
-add_theme_support( 'post-thumbnails' );
 if ( function_exists( 'add_image_size' ) ) { 
   add_image_size( 'coupon-thumbnail', 220, 135, true );
 }
+add_theme_support( 'post-thumbnails' );
 
 // custom fonts
-add_filter('mce_buttons', 'add_font_selection_to_tinymce');
 function add_font_selection_to_tinymce($buttons) {
-    array_push($buttons, 'fontselect');
-    return $buttons;
+  array_push($buttons, 'fontselect');
+  return $buttons;
 }
+add_filter('mce_buttons', 'add_font_selection_to_tinymce');
 
 /*********************************
   Includes
@@ -104,3 +109,8 @@ require_once( __DIR__ . '/includes/ajax.php');
  * share
  */
 require_once( __DIR__ . '/includes/share.php');
+
+/**
+ * share
+ */
+require_once( __DIR__ . '/includes/users-restrictions.php');
