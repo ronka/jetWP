@@ -47,11 +47,7 @@ function load_custom_wp_admin_style() {
 add_action( 'admin_enqueue_scripts', 'load_custom_wp_admin_style' );
 
 
-/**
- * Add google maps api key to ACF
- * 
- * @return $api
- */
+// Add google maps api key to ACF
 function my_acf_google_map_api( $api ){
   $api['key'] = '';
 	return $api;
