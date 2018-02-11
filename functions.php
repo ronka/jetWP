@@ -106,11 +106,11 @@ require_once( __DIR__ . '/includes/sidebars.php');
 require_once( __DIR__ . '/includes/ajax.php');
 
 /**
- * share
+ * Share
  */
 require_once( __DIR__ . '/includes/share.php');
 
 /**
- * share
+ * Users Restrictions
  */
 require_once( __DIR__ . '/includes/users-restrictions.php');
