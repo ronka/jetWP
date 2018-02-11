@@ -8,7 +8,7 @@ if( $current_user->user_login != 'interjet' ){
     // Remove all plugins update notice
     add_filter( 'site_transient_update_plugins', '__return_false' );
 
-    add_action( 'admin_menu', 'remove_menus', 999 );
+    //add_action( 'admin_menu', 'remove_menus', 999 );
 }
 
 function remove_menus(){
