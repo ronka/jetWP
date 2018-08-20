@@ -8,6 +8,8 @@
 
 </div><!-- #pageWrapper -->
 
+<?php do_action('after_wrapper'); ?>
+
 <?php wp_footer(); ?>
 </body>
 </html>

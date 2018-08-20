@@ -1,0 +1,95 @@
+// =============================================================================
+// Scale element on hover
+// =============================================================================
+
+@mixin hover-scale($scale, $time: 0.2s) {
+    transition: all $time ease-in;
+
+    &:hover{
+        transform:scale($scale);
+    }
+}
+
+// =============================================================================
+// add focus effect to element
+// =============================================================================
+
+@mixin beautiful-focus( $size: 5px, $color: $focus-color ){
+	-webkit-transition: all 0.30s ease-in-out;
+	-moz-transition: all 0.30s ease-in-out;
+	-ms-transition: all 0.30s ease-in-out;
+	-o-transition: all 0.30s ease-in-out;
+	&:focus{
+		outline: $focus-color 1px solid;   
+		box-shadow: 0 0 $size $focus-color;
+		border-color: $focus-color;
+	}
+}
+
+// =============================================================================
+// Position absoulte
+// =============================================================================
+
+@mixin abs-pos ($top: auto, $right: auto, $bottom: auto, $left: auto) {
+  top: $top;
+  right: $right;
+  bottom: $bottom;
+  left: $left;
+  position: absolute;
+}
+
+// =============================================================================
+// placeholder
+// =============================================================================
+
+@mixin placeholder($color: #000) {
+  ::-webkit-input-placeholder {color: $color}
+  :-moz-placeholder           {color: $color}
+  ::-moz-placeholder          {color: $color}
+  :-ms-input-placeholder      {color: $color}  
+}
+
+// =============================================================================
+// String Replace
+// =============================================================================
+
+@function str-replace($string, $search, $replace: "") {
+	$index: str-index($string, $search);
+
+	@if $index {
+		@return str-slice($string, 1, $index - 1) + $replace + str-replace(str-slice($string, $index + str-length($search)), $search, $replace);
+	}
+
+	@return $string;
+}
+
+// =============================================================================
+// Font Face
+// =============================================================================
+
+@mixin font-face($name, $path, $weight: null, $style: null, $exts: eot woff2 woff ttf svg) {
+	$src: null;
+
+	$extmods: (
+		eot: "?",
+		svg: "#" + str-replace($name, " ", "_")
+	);
+
+	$formats: (
+		otf: "opentype",
+		ttf: "truetype"
+	);
+
+	@each $ext in $exts {
+		$extmod: if(map-has-key($extmods, $ext), $ext + map-get($extmods, $ext), $ext);
+		$format: if(map-has-key($formats, $ext), map-get($formats, $ext), $ext);
+		$src: append($src, url(quote($path + "." + $extmod)) format(quote($format)), comma);
+	}
+
+	@font-face {
+		font-family: quote($name);
+		font-style: $style;
+		font-weight: $weight;
+		src: $src;
+	}
+}

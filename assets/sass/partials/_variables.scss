@@ -1,0 +1,73 @@
+//== Colors
+//
+//## Gray and brand colors for use across Bootstrap.
+
+$font-size-base: 18px;
+$brand-primary: #b99761;
+$brand-secondary: #b00930;
+$focus-color: #b00930; // rgba(81, 203, 238, 1)
+
+//== Scaffolding
+//
+//## Settings for some of the most global styles.
+
+$text-color: #0b1742;
+$gray: #898989;
+$brand-info: #0b1742;
+$brand-gray: #55596b;
+
+//== Components
+//
+//## Define common padding and border radius sizes and more. Values based on 14px text and 1.428 line-height (~20px to start).
+
+$border-radius-base:        0;
+$border-radius-large:       0;
+$border-radius-small:       0;
+
+//== Buttons
+//
+//## For each of Bootstrap's buttons, define text, background and border color.
+
+$btn-font-weight: 700;
+$btn-info-color: $brand-primary;
+
+//== Typography
+//
+//## Font, line-height, and color for body text, headings, and more.
+
+$font-family-sans-serif:  "Almoni", Helvetica, Arial, sans-serif !default;
+$headings-font-weight:    700;
+$font-size-base: 16px;
+$line-height-base:1.1;
+
+//== Grid system
+//
+//## Define your custom responsive grid.
+
+$grid-gutter-width: 30px;
+$container-large-desktop:      (1170px + $grid-gutter-width);
+
+//-- Z-index master list
+//
+// Warning: Avoid customizing these values. They're used for a bird's eye view
+// of components dependent on the z-axis and are designed to all work together.
+//
+// Note: These variables are not generated into the Customizer.
+
+$zindex-1: 10 !default;
+$zindex-2: 20 !default;
+$zindex-3: 30 !default;
+$zindex-4: 40 !default;
+
+//== Forms
+//
+//##
+
+$input-border-radius:0;
+$input-height-base: $font-size-base * 3;
+
+// #TODO: try to fix the mixin that isn't working
+::-webkit-input-placeholder {color: $brand-gray !important;}
+:-moz-placeholder           {color: $brand-gray !important;}
+::-moz-placeholder          {color: $brand-gray !important;}
+:-ms-input-placeholder      {color: $brand-gray !important;}  

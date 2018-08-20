@@ -1,8 +1,9 @@
 <?php
 
 $current_user = wp_get_current_user();
+$admin_user = '';
 
-if( $current_user->user_login != 'interjet' ){
+if( $current_user->user_login != $admin_user ){
     // Remove WordPress core update notice
     add_filter( 'pre_site_transient_update_core', '__return_null' );
     // Remove all plugins update notice
@@ -15,7 +16,6 @@ function remove_menus(){
     remove_menu_page( 'plugins.php' ); //Plugins
     remove_menu_page( 'tools.php' ); //Tools
 
-    remove_menu_page( 'edit.php?post_type=acf-field-group' );
-    remove_menu_page( 'wp_accessibility' );
-    remove_menu_page( 'yit_plugin_panel' );
+    remove_menu_page( 'edit.php?post_type=acf-field-group' ); // acf settings page
+    remove_menu_page( 'yit_plugin_panel' ); // yith plugins menu item
 }

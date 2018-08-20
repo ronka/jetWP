@@ -3,6 +3,7 @@ function fb_opengraph() {
     global $post;
     $excerpt = '';
     $img_src = '';
+    $title = $post->post_title;
  
     if(is_singular()) {
         if(has_post_thumbnail($post->ID)) {
@@ -19,7 +20,7 @@ function fb_opengraph() {
     }
 
     ?>
-    <meta property="og:title" content="<?php echo the_title(); ?>"/>
+    <meta property="og:title" content="<?php echo $title; ?>"/>
     <meta property="og:description" content="<?php echo ($excerpt); ?>"/>
     <meta property="og:type" content="article"/>
     <meta property="og:url" content="<?php echo the_permalink(); ?>"/>

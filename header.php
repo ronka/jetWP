@@ -10,6 +10,8 @@
 </head>
 <body <?php body_class();?>>
 
+<?php do_action('before_wrapper'); ?>
+
 <div id="pageWrapper" class="page-wrapper">
   
   <header id="pageHeader">

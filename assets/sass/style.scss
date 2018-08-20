@@ -1,0 +1,34 @@
+/*!
+Theme Name: jetWP simple starter theme
+Author: Ron Kantor
+Author URI: https://github.com/ronka/jetWP
+Description: Just a simple WordPress starter theme
+Version: 1.5.0
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
+Text Domain: jetwp
+*//*!
+*/
+
+/*----------  Global Partials  ----------*/
+
+@import 'partials/mixins';
+@import 'partials/fonts';
+
+// bootstarp and site variables
+@import 'partials/variables';
+// helper css classes
+@import 'partials/base';
+// typo
+@import 'partials/typo';
+
+/*----------  Plugins  ----------*/
+
+@import 'vendor/bootstrap';
+
+/*----------  Global Modules  ----------*/
+
+
+
+/*----------  Page Templates Modules  ----------*/
+
+

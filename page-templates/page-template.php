@@ -1,4 +1,4 @@
-<?php /* Template Name: תבנית דוגמא */ get_header(); ?>
+<?php /* Template Name: Template Page */ get_header(); ?>
 
   <main id="mainContent">
 
