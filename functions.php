@@ -31,7 +31,7 @@ add_action('wp_enqueue_scripts', 'add_theme_stylesheets');
  * @return void
  */
 function add_theme_scripts() {
-  wp_enqueue_script( 'scripts', get_template_directory_uri() . '/js/scripts.js', array('jquery'));
+  wp_enqueue_script( 'scripts', get_template_directory_uri() . '/assets/js/scripts.js', array('jquery'));
 }
 add_action( 'wp_enqueue_scripts', 'add_theme_scripts' ); 
 
@@ -43,7 +43,7 @@ add_action( 'wp_enqueue_scripts', 'add_theme_scripts' );
 function add_custom_admin_stylesheets() {
   wp_enqueue_style( 'admin-style',  get_template_directory_uri() . '/css/admin-style.css' );
 }
-add_action( 'admin_enqueue_scripts', 'add_custom_admin_stylesheets' );
+//add_action( 'admin_enqueue_scripts', 'add_custom_admin_stylesheets' );
 
 
 // Add google maps api key to ACF
