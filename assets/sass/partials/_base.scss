@@ -70,8 +70,6 @@ a img.aligncenter {
 =            Helpers spacing            =
 =============================================*/
 
-$spaceamounts: (0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 75, 100); // Adjust this to include the pixel amounts you need.
-
 @each $space in $spaceamounts {
   .mt-#{$space} { margin-top: #{$space}px !important; }
   .mb-#{$space} { margin-bottom: #{$space}px !important; }
