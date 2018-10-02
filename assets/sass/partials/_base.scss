@@ -10,8 +10,6 @@
   }
 }
 
-
-
 /*********************************
   Image Aligment
 **********************************/
@@ -56,15 +54,10 @@ a img.aligncenter {
   margin-right: auto;
 }
 
-/** font size **/
-.font-18 { font-size: 18px; }
-
 /** position **/
+
 .pos-r { position: relative; }
 .pos-a { position: absolute; }
-
-.left-10 { left: 10px; }
-.right-10 { right: 10px; }
 
 .pos-tb-center {
   position: absolute;
@@ -73,82 +66,34 @@ a img.aligncenter {
   transform: translateY(-50%);
 }
 
-/** padding **/
-.p-0 { padding: 0 !important; }
-.p-10 { padding: 10px; }
-.p-20 { padding: 20px; }
+/*=============================================
+=            Helpers spacing            =
+=============================================*/
 
-.pr-10 { padding-right: 10px; }
-.pr-15 { padding-right: 15px; }
-.pr-20 { padding-right: 20px; }
-.pr-120 { padding-right: 120px; }
+$spaceamounts: (0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 75, 100); // Adjust this to include the pixel amounts you need.
 
-.pl-10 { padding-left: 10px; }
-.pl-15 { padding-left: 15px; }
-.pl-20 { padding-left: 20px; }
-.pl-40 { padding-left: 40px; }
-.pl-120 { padding-left: 120px; }
+@each $space in $spaceamounts {
+  .mt-#{$space} { margin-top: #{$space}px !important; }
+  .mb-#{$space} { margin-bottom: #{$space}px !important; }
+  .ml-#{$space} { margin-left: #{$space}px !important; }
+  .mr-#{$space} { margin-right: #{$space}px !important; }
 
-.pt-10 { padding-top: 10px; }
-.pt-15 { padding-top: 15px; }
-.pt-20 { padding-top: 20px; }
-.pt-30 { padding-top: 30px; }
-.pt-40 { padding-top: 40px; }
-.pt-70 { padding-top: 70px; }
+  .mrl-#{$space} { margin-right: #{$space}px !important; margin-left: #{$space}px !important;  }
+  .mtb-#{$space} { margin-top: #{$space}px !important; margin-bottom: #{$space}px !important;  }
+  
+  .pt-#{$space} { padding-top: #{$space}px !important; }
+  .pb-#{$space} { padding-bottom: #{$space}px !important; }
+  .pl-#{$space} { padding-left: #{$space}px !important; }
+  .pr-#{$space} { padding-right: #{$space}px !important; }
 
-.pb-15 { padding-bottom: 15px; }
-.pb-30 { padding-bottom: 30px; }
-.pb-60 { padding-bottom: 60px; }
+  .prl-#{$space} { padding-right: #{$space}px !important; padding-left: #{$space}px !important;  }
+  .ptb-#{$space} { padding-top: #{$space}px !important; padding-bottom: #{$space}px !important;  }
+}
 
-.prl-0  { padding-right: 0 !important; padding-left: 0 !important; }
-.prl-20 { padding-right: 20px; padding-left: 20px; }
-.prl-120 { padding-right: 120px; padding-left: 120px; }
-
-.ptb-10 { padding-top: 10px; padding-bottom: 10px; }
-.ptb-15 { padding-top: 15px; padding-bottom: 15px; }
-.ptb-30 { padding-top: 30px; padding-bottom: 30px; }
-.ptb-70 { padding-top: 70px; padding-bottom: 70px; }
-
-/** margin **/
-.m-0{ margin: 0 !important; }
-.m-20{ margin: 20px; }
-
-.mr-10{ margin-right: 10px; }
-
-.ml-10{ margin-left: 10px; }
-
-.mb-0 { margin-bottom: 0px; }
-.mb-10 { margin-bottom: 10px; }
-.mb-15 { margin-bottom: 15px; }
-.mb-20 { margin-bottom: 20px; }
-.mb-30 { margin-bottom: 30px; }
-.mb-40 { margin-bottom: 40px; }
-.mb-50 { margin-bottom: 50px; }
-.mb-80 { margin-bottom: 80px; }
-
-.mt-0  { margin-top: 0px; }
-.mt-10 { margin-top: 10px; }
-.mt-15 { margin-top: 15px; }
-.mt-20 { margin-top: 20px; }
-.mt-30 { margin-top: 30px; }
-.mt-50 { margin-top: 50px; }
-.mt-60 { margin-top: 60px; }
-.mt-80 { margin-top: 80px; }
-
-.mrl-5 { margin-right:5px; margin-left:5px; }
-.mrl-10 { margin-right:10px; margin-left:10px; }
-.mrl-15 { margin-right:15px; margin-left:15px; }
-.mrl-20 { margin-right:20px; margin-left:20px; }
-.mrl-30 { margin-right:30px; margin-left:30px; }
-
-.mtb-0 { margin-top: 0px; margin-bottom: 0px; }
-.mtb-10 { margin-top: 10px; margin-bottom: 10px; }
-.mtb-20 { margin-top: 20px; margin-bottom: 20px; }
-.mtb-30 { margin-top: 30px; margin-bottom: 30px; }
-.mtb-50 { margin-top: 50px; margin-bottom: 50px; }
-.mtb-80 { margin-top: 80px; margin-bottom: 80px; }
+/*=====  End of Helpers spacing  ======*/
 
 /** Colors **/
+
 .bg-white{ background-color: #fff; }
 .bg-grey{ background-color: #57585b; }
 .bg-dark { background-color: #000; }
@@ -163,6 +108,7 @@ a img.aligncenter {
 /*********************************
   Utiles
 **********************************/
+
 .dark-hamburger .icon-bar{
   background:#57585b !important;
 }
@@ -178,14 +124,8 @@ a img.aligncenter {
 }
 
 .v-center{
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
   align-items: center;
-  -webkit-box-pack: center;
-  -ms-flex-pack: center;
   justify-content: center;
 }
 
@@ -240,26 +180,41 @@ a img.aligncenter {
   Responsive
 **********************************/
 
-@media (min-width: 1200px){
-}
-@media (max-width: 1200px){
-}
-@media (max-width: 992px){
-}
+@media (min-width: 1200px){}
+
+@media (max-width: 1200px){}
+
+@media (max-width: 992px){}
+
 @media (max-width: 768px){
   .full-xs-height { height: 100%; }
+
+  .text-xs-left { text-align: left; }
   .text-xs-right { text-align: right; }
+
   .text-xs-center { text-align: center; }
 
-  .p-xs-0 { padding:0 !important; }
+  @each $space in $spaceamounts {
+    .mt-xs-#{$space} { margin-top: #{$space}px !important; }
+    .mb-xs-#{$space} { margin-bottom: #{$space}px !important; }
+    .ml-xs-#{$space} { margin-left: #{$space}px !important; }
+    .mr-xs-#{$space} { margin-right: #{$space}px !important; }
 
-  .m-xs-10 { margin: 10px !important; }
+    .mrl-xs-#{$space} { margin-right: #{$space}px !important; margin-left: #{$space}px !important;  }
+    .mtb-xs-#{$space} { margin-top: #{$space}px !important; margin-bottom: #{$space}px !important;  }
+    
+    .pt-xs-#{$space} { padding-top: #{$space}px !important; }
+    .pb-xs-#{$space} { padding-bottom: #{$space}px !important; }
+    .pl-xs-#{$space} { padding-left: #{$space}px !important; }
+    .pr-xs-#{$space} { padding-right: #{$space}px !important; }
 
-  .mb-xs-20 { margin-bottom: 20px; }
+    .prl-xs-#{$space} { padding-right: #{$space}px !important; padding-left: #{$space}px !important;  }
+    .ptb-xs-#{$space} { padding-top: #{$space}px !important; padding-bottom: #{$space}px !important;  }
+  }
 }
-@media (max-width: 640px){
-}
-@media (max-width:420px){
-}
-@media(max-width:340px){
-}
+
+@media (max-width: 640px){}
+
+@media (max-width:420px){}
+
+@media(max-width:340px){}
