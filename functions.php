@@ -16,19 +16,14 @@ if ( ! current_user_can( 'manage_options' ) ) {
 
 /**
  * Add Theme CSS fields
- *
- * @return void
  */
 function add_theme_stylesheets(){
-  // styles
   wp_enqueue_style('style', get_stylesheet_uri());
 }
 add_action('wp_enqueue_scripts', 'add_theme_stylesheets');
 
 /**
  * Add Theme JS scripts
- *
- * @return void
  */
 function add_theme_scripts() {
   wp_enqueue_script( 'scripts', get_template_directory_uri() . '/assets/js/scripts.js', array('jquery'));
@@ -37,8 +32,6 @@ add_action( 'wp_enqueue_scripts', 'add_theme_scripts' );
 
 /**
  * Add Theme Admin Stylesheets
- *
- * @return void
  */
 function add_custom_admin_stylesheets() {
   wp_enqueue_style( 'admin-style',  get_template_directory_uri() . '/css/admin-style.css' );
@@ -46,25 +39,22 @@ function add_custom_admin_stylesheets() {
 //add_action( 'admin_enqueue_scripts', 'add_custom_admin_stylesheets' );
 
 
-// Add google maps api key to ACF
+/**
+ * Add google maps api key to ACF
+ */
 function my_acf_google_map_api( $api ){
   $api['key'] = '';
 	return $api;
 }
 //add_filter('acf/fields/google_map/api', 'my_acf_google_map_api');
 
-// thumbnail support
+/**
+ * Thumbnail Support
+ */
 if ( function_exists( 'add_image_size' ) ) { 
-  add_image_size( 'coupon-thumbnail', 220, 135, true );
+  //add_image_size( 'example-thumbnail', 220, 135, true );
 }
-add_theme_support( 'post-thumbnails' );
-
-// custom fonts
-function add_font_selection_to_tinymce($buttons) {
-  array_push($buttons, 'fontselect');
-  return $buttons;
-}
-add_filter('mce_buttons', 'add_font_selection_to_tinymce');
+//add_theme_support( 'post-thumbnails' );
 
 /*********************************
   Includes

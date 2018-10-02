@@ -3,15 +3,15 @@
 function jetwp_customize_register($wp_customize){
   // Global theme settings
   $wp_customize->add_section("jetwp-settings", array(
-    "title" => "הגדרות כלליות",
+    "title" => __('General Theme Settings'),
     "priority" => 30,
   ));
   // Logo
-  $wp_customize->add_setting("settings-logo");
-  $wp_customize->add_control(new WP_Customize_Image_Control( $wp_customize,"settings-logo", array(
-      "label" => "לוגו",
+  $wp_customize->add_setting("jetwp-settings--logo");
+  $wp_customize->add_control(new WP_Customize_Image_Control( $wp_customize,"jetwp-settings--logo", array(
+      "label" => __('Logo'),
       "section" => "jetwp-settings",
-      "settings" => "settings-logo"
+      "settings" => "jetwp-settings--logo"
     )
   ));
 }

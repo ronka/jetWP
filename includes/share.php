@@ -30,5 +30,3 @@ function fb_opengraph() {
         
 }
 add_action('wp_head', 'fb_opengraph', 5);
-
-?>

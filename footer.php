@@ -1,7 +1,8 @@
   <footer id="mainFooter">
     <div class="container">
       <div class="row">
-        <p>© <?php echo date('Y'); ?> כל הזכויות שמורות <?php bloginfo('name'); ?></p>
+        <p></p>
+        <?php printf(__('© %1$s All copyright reserved %2$s'), date('Y'), bloginfo('name')); ?>
       </div>
     </div>
   </footer>

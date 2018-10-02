@@ -16,7 +16,7 @@
 
           <?php else: ?>
 
-              <h2>לא נמצא תוכן</h2>
+              <h2><?php __('Content Not Found'); ?></h2>
 
           <?php endif; ?>
         </div>

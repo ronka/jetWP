@@ -19,7 +19,7 @@
 
         <div class="brand col-md-3 col-md-push-9">
           <a href="<?php echo esc_url( home_url() ); ?>" id="logo">
-            <img src="<?php echo esc_url( get_theme_mod("settings-logo") ); ?>" alt="לוגו">
+            <img src="<?php echo esc_url( get_theme_mod("jetwp-settings--logo") ); ?>" alt="לוגו">
           </a>
         </div><!-- .brand -->
 

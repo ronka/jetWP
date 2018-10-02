@@ -1,46 +1,42 @@
 <?php 
 
 // Custom Post type, coupons
-function custom_post_type_coupon() {
+function custom_post_type() {
   $labels = array(
-    'name'                => 'קופונים',
-    'singular_name'       => 'קופון',
-    'menu_name'           => 'קופונים',
-    'parent_item_colon'   => 'קופון אב',
-    'all_items'           => 'כל הקופונים',
-    'view_item'           => 'צפה בקופון',
-    'add_new_item'        => 'הוסף קופון חדש',
-    'add_new'             => 'הוסף חדש',
-    'edit_item'           => 'ערוך קופון',
-    'update_item'         => 'עדכן קופון',
-    'search_items'        => 'חפש קופון',
-    'not_found'           => 'לא נמצא',
-    'not_found_in_trash'  => 'לא נמצא בסל מחזור'
+    'name' => _x('Books', 'post type general name'),
+    'singular_name' => _x('Book', 'post type singular name'),
+    'menu_name' => _x('Books', 'admin menu'),
+    'name_admin_bar' => _x('Book', 'add new on admin bar'),
+    'add_new' => _x('Add New', 'book'),
+    'add_new_item' => __('Add New Book'),
+    'new_item' => __('New Book'),
+    'edit_item' => __('Edit Book'),
+    'view_item' => __('View Book'),
+    'all_items' => __('All Books'),
+    'search_items' => __('Search Books'),
+    'parent_item_colon' => __('Parent Books:'),
+    'not_found' => __('No books found.'),
+    'not_found_in_trash' => __('No books found in Trash.')
   );
-  
+
   $args = array(
-    'label'               => 'קופונים',
-    'description'         => 'קופונים לעסקים',
-    'labels'              => $labels,
-    'supports'            => array( 'title', 'thumbnail'),
-    'taxonomies'          => array( 'post_tag', 'coupon-category' ),
-    'hierarchical'        => false,
-    'public'              => true,
-    'show_ui'             => true,
-    'show_in_menu'        => true,
-    'show_in_nav_menus'   => true,
-    'show_in_admin_bar'   => true,
-    'menu_position'       => 5,
-    'menu_icon'           => 'dashicons-tickets-alt',
-    'can_export'          => true,
-    'has_archive'         => true,
-    'exclude_from_search' => false,
-    'publicly_queryable'  => true,
-    'capability_type'     => 'post',
+    'labels' => $labels,
+    'description' => __('Description.'),
+    'public' => true,
+    'publicly_queryable' => true,
+    'show_ui' => true,
+    'show_in_menu' => true,
+    'query_var' => true,
+    'rewrite' => array('slug' => 'book'),
+    'capability_type' => 'post',
+    'has_archive' => true,
+    'hierarchical' => false,
+    'menu_position' => null,
+    'supports' => array('title', 'editor', 'author', 'thumbnail', 'excerpt', 'comments')
   );
-  
-  register_post_type( 'coupons', $args );
+
+  register_post_type('book', $args);
 }
-//add_action( 'init', 'custom_post_type_coupon');
+//add_action( 'init', 'custom_post_type');
 
 ?>
