@@ -4,9 +4,9 @@ var gulp = require('gulp'),
     $ = require('gulp-load-plugins')({ lazy: true }),
     sourcemaps = require('gulp-sourcemaps');
 
-var baseUrl = 'localhost/wp/';
+var baseUrl = 'localhost/_playground/wordpress/';
 
-gulp.task('styles', function () {
+gulp.task('css', function () {
     return gulp
         .src(['assets/sass/**/*.scss', '!assets/sass/{rtl,rtl/**/*}'])
         .pipe(sourcemaps.init())
@@ -32,7 +32,7 @@ gulp.task('rtl', function () {
         .pipe(browserSync.reload({ stream: true }));
 });
 
-gulp.task('browser-sync', ['styles'], function () {
+gulp.task('browser-sync', ['css'], function () {
     browserSync({
         proxy: baseUrl
     });
@@ -42,7 +42,7 @@ gulp.task('watch', function () {
     // Watch .html files
     gulp.watch("**/*.php").on('change', browserSync.reload);
     // Watch .sass files
-    gulp.watch('assets/sass/**/*.scss', ['styles', 'rtl', browserSync.reload]);
+    gulp.watch('assets/sass/**/*.scss', ['css', 'rtl', browserSync.reload]);
     // Watch .js files
     gulp.watch('assets/js/*.js').on('change', browserSync.reload)
     // Watch .js files
@@ -51,10 +51,11 @@ gulp.task('watch', function () {
     gulp.watch('src/images/**/*', ['images', browserSync.reload]);
 });
 
+gulp.task('styles', ['css','rtl']);
+
 gulp.task('default', function () {
     gulp.start(
         'styles',
-        'rtl',
         'browser-sync',
         'watch'
     );
