@@ -79,15 +79,15 @@ function buildGzip(done) {
 
     setTimeout(function(){
         gulp.src('./assets/js/' + filesName + '.min.js')
-            .pipe(gzip({append: true}))
+            .pipe($.gzip({append: true}))
             .pipe(gulp.dest('./assets/js'));
 
         gulp.src('./style.min.css')
-            .pipe(gzip({append: true}))
+            .pipe($.gzip({append: true}))
             .pipe(gulp.dest('./'));
 
         gulp.src('./rtl.min.css')
-            .pipe(gzip({append: true}))
+            .pipe($.gzip({append: true}))
             .pipe(gulp.dest('./'));
 
         done();

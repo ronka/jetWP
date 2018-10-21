@@ -2,7 +2,7 @@
 //
 //## Gray and brand colors for use across Bootstrap.
 
-$font-size-base: 18px;
+$font-size-base: 16px;
 $brand-primary: #b99761;
 $brand-secondary: #b00930;
 $focus-color: #b00930; // rgba(81, 203, 238, 1)
@@ -37,7 +37,6 @@ $btn-info-color: $brand-primary;
 
 $font-family-sans-serif:  "Almoni", Helvetica, Arial, sans-serif !default;
 $headings-font-weight:    700;
-$font-size-base: 16px;
 $line-height-base:1.1;
 
 //== Grid system
@@ -46,7 +45,7 @@ $line-height-base:1.1;
 
 $grid-gutter-width: 30px;
 $container-large-desktop:      (1170px + $grid-gutter-width);
-
+$spaceamounts: ('0', '5', '10', '15', '20', '30');
 //-- Z-index master list
 //
 // Warning: Avoid customizing these values. They're used for a bird's eye view
@@ -70,4 +69,4 @@ $input-height-base: $font-size-base * 3;
 ::-webkit-input-placeholder {color: $brand-gray !important;}
 :-moz-placeholder           {color: $brand-gray !important;}
 ::-moz-placeholder          {color: $brand-gray !important;}
-:-ms-input-placeholder      {color: $brand-gray !important;}  
+:-ms-input-placeholder      {color: $brand-gray !important;}
