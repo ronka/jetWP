@@ -6,18 +6,19 @@ var gulp = require('gulp'),
     del = require('del');
 
 var baseUrl = 'localhost/wp/',
-    filesName = 'dist';
+    jsFile = 'dist',
+    cssFile = 'style';
 
 function buildDelete(done) {
     console.log('Deleteing old build files');
 
     del([
-        './assets/js/' + filesName + '.js',
-        './assets/js/' + filesName + '.min.js',
-        './assets/js/' + filesName + '.min.js.gz',
-        './' + filesName + '.css',
-        './' + filesName + '.min.css',
-        './' + filesName + '.min.css.gz'
+        './assets/js/' + jsFile + '.js',
+        './assets/js/' + jsFile + '.min.js',
+        './assets/js/' + jsFile + '.min.js.gz',
+        './' + cssFile + '.css',
+        './' + cssFile + '.min.css',
+        './' + cssFile + '.min.css.gz'
     ], {
         silent: true,
         strict: false
@@ -35,7 +36,7 @@ function buildCompress(done) {
         .pipe($.postcss([autoprefixer(['last 2 version', 'safari 8'])]))
         .pipe($.cleanCss())
         .pipe(sourcemaps.write())
-        .pipe(gulp.dest('./style.css'))
+        .pipe(gulp.dest('./'+ cssFile +'.css'))
         .pipe($.cssmin())
         .pipe($.rename({suffix: '.min'}))
         .pipe(gulp.dest('./'))
@@ -62,7 +63,7 @@ function buildCompress(done) {
         gulp.src([
             './assets/js/*.js'
         ])
-        .pipe($.concat(filesName + '.js'))
+        .pipe($.concat(jsFile + '.js'))
         .pipe(gulp.dest('./assets/js'))
         .pipe($.rename({suffix: '.min'}))
         .pipe($.uglify().on('error', function(uglify) {
@@ -78,11 +79,11 @@ function buildGzip(done) {
     console.log('Creating gzip encoded versions');
 
     setTimeout(function(){
-        gulp.src('./assets/js/' + filesName + '.min.js')
+        gulp.src('./assets/js/' + jsFile + '.min.js')
             .pipe($.gzip({append: true}))
             .pipe(gulp.dest('./assets/js'));
 
-        gulp.src('./style.min.css')
+        gulp.src('./'+ cssFile +'.min.css')
             .pipe($.gzip({append: true}))
             .pipe(gulp.dest('./'));
 
@@ -91,7 +92,7 @@ function buildGzip(done) {
             .pipe(gulp.dest('./'));
 
         done();
-    }, 15000);
+    }, 10000);
 }
 
 function browserSyncProxy(done) {
@@ -110,9 +111,9 @@ function watch(done) {
     // Watch .js files
     gulp.watch('assets/js/*.js').on('change', browserSync.reload)
     // Watch .js files
-    gulp.watch('assets/js/vendor/*', ['vendorScripts', browserSync.reload]);
+    gulp.watch('vendor/*', gulp.series(['buildDelete','buildCompress', 'buildGzip', browserSync.reload]));
     // Watch image files
-    gulp.watch('src/images/**/*', ['images', browserSync.reload]);
+    gulp.watch('src/images/**/*', browserSync.reload);
 
     done();
 }
