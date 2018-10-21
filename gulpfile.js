@@ -35,7 +35,7 @@ function buildCompress(done) {
         .pipe($.postcss([autoprefixer(['last 2 version', 'safari 8'])]))
         .pipe($.cleanCss())
         .pipe(sourcemaps.write())
-        .pipe(gulp.dest('./'))
+        .pipe(gulp.dest('./style.css'))
         .pipe($.cssmin())
         .pipe($.rename({suffix: '.min'}))
         .pipe(gulp.dest('./'))
@@ -106,7 +106,7 @@ function watch(done) {
     // Watch .html files
     gulp.watch("**/*.php").on('change', browserSync.reload);
     // Watch .sass files
-    gulp.watch('assets/sass/**/*.scss', ['styles', 'rtl', browserSync.reload]);
+    gulp.watch('assets/sass/**/*.scss', gulp.series(['buildDelete','buildCompress', 'buildGzip', browserSync.reload]));
     // Watch .js files
     gulp.watch('assets/js/*.js').on('change', browserSync.reload)
     // Watch .js files
