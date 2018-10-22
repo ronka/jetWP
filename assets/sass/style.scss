@@ -10,7 +10,6 @@ Text Domain: jetwp
 */
 
 /*----------  Global Partials  ----------*/
-
 @import 'partials/mixins';
 @import 'partials/fonts';
 
@@ -21,12 +20,12 @@ Text Domain: jetwp
 // typo
 @import 'partials/typo';
 
-/*----------  Plugins  ----------*/
-@import '../../node_modules/bootstrap/scss/bootstrap';
-
 /*----------  Global Modules  ----------*/
 
 
+
+/*----------  Plugins  ----------*/
+@import '../../node_modules/bootstrap/scss/bootstrap';
 
 /*----------  Page Templates Modules  ----------*/
 

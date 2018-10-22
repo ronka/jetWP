@@ -10,6 +10,10 @@
     "type": "git",
     "url": "https://github.com/ronka/jetWP"
   },
+  "scripts": {
+    "preinstall": "rimraf public/vendor",
+    "postinstall": "vendor-copy"
+  },
   "devDependencies": {
     "autoprefixer": "^9.1.5",
     "babel-preset-es2015": "^6.24.1",
@@ -32,9 +36,21 @@
     "gulp-uglify": "^3.0.1",
     "gulp-cssmin": "^0.2.0",
     "gulp-gzip": "1.4.2",
-    "gulp-minify": "^3.1.0"
+    "gulp-minify": "^3.1.0",
+    "vendor-copy": "2.0.0"
   },
   "dependencies": {
-    "bootstrap": "^4.1.3"
-  }
+    "bootstrap": "^4.1.3",
+    "jquery": "3.3.1"
+  },
+  "vendorCopy": [
+    {
+      "from": "./node_modules/jquery/dist/jquery.js",
+      "to": "./assets/js/jquery.js"
+    },
+    {
+      "from": "./node_modules/jquery/dist/jquery.min.js",
+      "to": "./assets/js/jquery.min.js"
+    }
+  ]
 }
