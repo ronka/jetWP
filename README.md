@@ -2,5 +2,4 @@
 
 **Simple WordPress starter theme** *powered by Bootstrap, SASS and Gulp.*
 
-#### Gulp
-Edit project directory in gulpfile.js, use `gulp` to start developing. `--prod` flag for production
+Edit project directory in gulpfile.js. `--prod` flag for production
