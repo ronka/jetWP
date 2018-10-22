@@ -1,36 +1,71 @@
-var gulp = require('gulp'),
-    autoprefixer = require('autoprefixer'),
-    browserSync = require('browser-sync'),
-    $ = require('gulp-load-plugins')({ lazy: true }),
-    sourcemaps = require('gulp-sourcemaps');
 
+/*=============================================
+=            Config And Settings            =
+=============================================*/
+
+// Change to your url
 var baseUrl = 'localhost/_playground/wordpress/';
+
+var gulp         = require('gulp'),
+    argv         = require('yargs').argv,
+    browserSync  = require('browser-sync'),
+    autoprefixer = require('autoprefixer'),
+    $            = require('gulp-load-plugins')({ lazy: true });
+
+var isProd = function(){
+    return argv.prod !== undefined;
+}
+
+/*=============================================
+=            CSS tasks            =
+=============================================*/
 
 gulp.task('css', function () {
     return gulp
-        .src(['assets/sass/**/*.scss', '!assets/sass/{rtl,rtl/**/*}'])
-        .pipe(sourcemaps.init())
-        .pipe($.sass().on('error', $.sass.logError))
-        .pipe($.postcss([autoprefixer(['last 2 version', 'safari 8'])]))
-        .pipe($.cleanCss())
-        // on prod remove sourcemaps
-        .pipe(sourcemaps.write())
-        .pipe(gulp.dest('./'))
-        .pipe(browserSync.reload({ stream: true }));
+        .src(['assets/sass/**/*.scss', '!assets/sass/{rtl,rtl/**/*}', '!assets/sass/{admin,admin/**/*}'])
+        .pipe( $.if( isProd(), $.sourcemaps.init() ) )
+        .pipe( $.sass().on('error', $.sass.logError) )
+        .pipe( $.postcss([autoprefixer(['last 2 version', 'safari 8'])]) )
+        .pipe( $.cleanCss() )
+        .pipe( $.if( isProd(), $.sourcemaps.write() ) )
+        .pipe( gulp.dest('./') )
+        .pipe( browserSync.reload({ stream: true }) );
 });
 
 gulp.task('rtl', function () {
     return gulp
         .src('assets/sass/rtl/**/*.scss')
-        .pipe(sourcemaps.init())
-        .pipe($.sass().on('error', $.sass.logError))
-        .pipe($.postcss([autoprefixer(['last 2 version', 'safari 8'])]))
-        .pipe($.cleanCss())
-        // on prod remove sourcemaps
-        .pipe(sourcemaps.write())
-        .pipe(gulp.dest('./'))
-        .pipe(browserSync.reload({ stream: true }));
+        .pipe( $.if( isProd(), $.sourcemaps.init() ) )
+        .pipe( $.sass().on('error', $.sass.logError) )
+        .pipe( $.postcss([autoprefixer(['last 2 version', 'safari 8'])]) )
+        .pipe( $.cleanCss() )
+        .pipe( $.if( isProd(), $.sourcemaps.write() ) )
+        .pipe( gulp.dest('./') )
+        .pipe( browserSync.reload({ stream: true }) );
 });
+
+/*=====  End of CSS tasks  ======*/
+
+
+/*=============================================
+=            Scripts tasks            =
+=============================================*/
+
+gulp.task('js', function () {
+    return gulp
+        .src('assets/js/src/**/*.js')
+        .pipe( $.if( isProd(), $.sourcemaps.init() ) )
+        .pipe( $.plumber() )
+        .pipe( $.concat('app.js') )
+        .pipe( $.babel( {
+            presets: ['@babel/env']
+        }))
+        .pipe( $.if( isProd(), $.sourcemaps.write() ), $.uglify() )
+        .pipe( gulp.dest('assets/js') )
+        .pipe( browserSync.reload({ stream: true }));
+});
+
+/*=====  End of Scripts tasks  ======*/
 
 gulp.task('browser-sync', ['css'], function () {
     browserSync({
@@ -39,24 +74,43 @@ gulp.task('browser-sync', ['css'], function () {
 });
 
 gulp.task('watch', function () {
-    // Watch .html files
-    gulp.watch("**/*.php").on('change', browserSync.reload);
-    // Watch .sass files
-    gulp.watch('assets/sass/**/*.scss', ['css', 'rtl', browserSync.reload]);
-    // Watch .js files
-    gulp.watch('assets/js/*.js').on('change', browserSync.reload)
-    // Watch .js files
-    gulp.watch('assets/js/vendor/*', ['vendorScripts', browserSync.reload]);
-    // Watch image files
-    gulp.watch('src/images/**/*', ['images', browserSync.reload]);
+    gulp.watch("**/*.php").on('change', browserSync.reload); // Watch .html/.php files
+    
+    gulp.watch('assets/sass/**/*.scss', ['css', 'rtl', browserSync.reload]); // Watch .sass files
+    
+    gulp.watch('assets/js/**/*.js', ['scripts', browserSync.reload]); // Watch .js files
+
+    // gulp.watch('src/images/**/*', ['images', browserSync.reload]); // Watch image files
 });
 
-gulp.task('styles', ['css','rtl']);
 
+/*=============================================
+=            Tasks to use            =
+=============================================*/
+
+// gulp
 gulp.task('default', function () {
     gulp.start(
         'styles',
+        'scripts',
         'browser-sync',
         'watch'
     );
 });
+
+// gulp styles
+gulp.task('styles', function(){
+    gulp.start(
+        'css',
+        'rtl'
+    );
+});
+
+// gulp scripts
+gulp.task('scripts', function(){
+    gulp.start(
+        'js'
+    );
+});
+
+/*=====  End of Tasks to use  ======*/

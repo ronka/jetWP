@@ -1,31 +1,46 @@
-<?php get_header(); ?>
+<?php
+/**
+ * Index
+ *
+ * Main index template
+ *
+ * @category   Template
+ * @package    WordPress
+ * @since      1.0.0
+ */
 
-  <main id="mainContent">
+get_header(); ?>
+	<main id="mainContent">
 
-    <div class="container">
-      <div class="row">
-        <div class="col-md-8">
-          <?php if (have_posts()): while (have_posts()) : the_post(); ?>
-            <div id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
+		<div class="container">
+			<div class="row">
+				<div class="col-md-8">
+				<?php if ( have_posts() ) : ?>
 
-              <?php the_content(); ?>
+					<?php
+					while ( have_posts() ) :
+						the_post();
+						?>
 
-            </div>
+					<div id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 
-          <?php endwhile; ?>
+						<?php the_content(); ?>
 
-          <?php else: ?>
+					</div>
 
-              <h2><?php __('Content Not Found'); ?></h2>
+				<?php endwhile; ?>
 
-          <?php endif; ?>
-        </div>
-        <div class="col-md-4">
-          <?php get_sidebar(); ?>
-        </div>
-      </div><!-- .row -->
-    </div><!-- .container -->
+				<?php else : ?>
 
-  </main><!-- #main-content -->
-  
+					<h2><?php __( 'Content Not Found' ); ?></h2>
+
+				<?php endif; ?>
+				</div>
+				<div class="col-md-4">
+				<?php get_sidebar(); ?>
+				</div>
+			</div><!-- .row -->
+		</div><!-- .container -->
+
+	</main><!-- #main-content -->
 <?php get_footer(); ?>
