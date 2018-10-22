@@ -12,9 +12,7 @@ var gulp         = require('gulp'),
     autoprefixer = require('autoprefixer'),
     $            = require('gulp-load-plugins')({ lazy: true });
 
-var isProd = function(){
-    return argv.prod !== undefined;
-}
+var is_dev = true;
 
 /*=============================================
 =            CSS tasks            =
@@ -23,11 +21,11 @@ var isProd = function(){
 gulp.task('css', function () {
     return gulp
         .src(['assets/sass/**/*.scss', '!assets/sass/{rtl,rtl/**/*}', '!assets/sass/{admin,admin/**/*}'])
-        .pipe( $.if( isProd(), $.sourcemaps.init() ) )
+        .pipe( $.if( is_dev, $.sourcemaps.init() ) )
         .pipe( $.sass().on('error', $.sass.logError) )
         .pipe( $.postcss([autoprefixer(['last 2 version', 'safari 8'])]) )
         .pipe( $.cleanCss() )
-        .pipe( $.if( isProd(), $.sourcemaps.write() ) )
+        .pipe( $.if( is_dev, $.sourcemaps.write() ) )
         .pipe( gulp.dest('./') )
         .pipe( browserSync.reload({ stream: true }) );
 });
@@ -35,11 +33,11 @@ gulp.task('css', function () {
 gulp.task('rtl', function () {
     return gulp
         .src('assets/sass/rtl/**/*.scss')
-        .pipe( $.if( isProd(), $.sourcemaps.init() ) )
+        .pipe( $.if( is_dev, $.sourcemaps.init() ) )
         .pipe( $.sass().on('error', $.sass.logError) )
         .pipe( $.postcss([autoprefixer(['last 2 version', 'safari 8'])]) )
         .pipe( $.cleanCss() )
-        .pipe( $.if( isProd(), $.sourcemaps.write() ) )
+        .pipe( $.if( is_dev, $.sourcemaps.write() ) )
         .pipe( gulp.dest('./') )
         .pipe( browserSync.reload({ stream: true }) );
 });
@@ -54,13 +52,13 @@ gulp.task('rtl', function () {
 gulp.task('js', function () {
     return gulp
         .src('assets/js/src/**/*.js')
-        .pipe( $.if( isProd(), $.sourcemaps.init() ) )
+        .pipe( $.if( is_dev, $.sourcemaps.init() ) )
         .pipe( $.plumber() )
         .pipe( $.concat('app.js') )
         .pipe( $.babel( {
             presets: ['@babel/env']
         }))
-        .pipe( $.if( isProd(), $.sourcemaps.write() ), $.uglify() )
+        .pipe( $.if( is_dev, $.sourcemaps.write(), $.uglify() ) )
         .pipe( gulp.dest('assets/js') )
         .pipe( browserSync.reload({ stream: true }));
 });
@@ -95,6 +93,17 @@ gulp.task('default', function () {
         'scripts',
         'browser-sync',
         'watch'
+    );
+});
+
+// gulp build --prod
+gulp.task('build', function () {
+    // if --prod flag is passed, build without source maps and minified
+    is_dev = !argv.prod;
+    
+    gulp.start(
+        'styles',
+        'scripts'
     );
 });
 
