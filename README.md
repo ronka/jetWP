@@ -1,4 +1,4 @@
-# JetWP 1.6.1 :zap: :rocket:
+# JetWP 1.6.2 :zap: :rocket:
 
 **Simple WordPress starter theme** *powered by Bootstrap, SASS, Babel and Gulp.*
 
