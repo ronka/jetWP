@@ -11,6 +11,8 @@
 	General Settings
  *********************************/
 
+define( 'ENV', 'dev' );
+
 // Admin bar only for admins.
 if ( ! current_user_can( 'manage_options' ) ) {
 	show_admin_bar( false );
@@ -20,7 +22,11 @@ if ( ! current_user_can( 'manage_options' ) ) {
  * Add Theme CSS fields
  */
 function add_theme_stylesheets() {
-	wp_enqueue_style( 'style', get_stylesheet_uri(), array(), '1.0' );
+	if ( ENV === 'production' ) {
+		wp_enqueue_style( 'style', get_template_directory_uri() . '/style.css.gz', array(), '1.0' );
+	} else {
+		wp_enqueue_style( 'style', get_stylesheet_uri(), array(), '1.0' );
+	}
 }
 add_action( 'wp_enqueue_scripts', 'add_theme_stylesheets' );
 
@@ -28,7 +34,11 @@ add_action( 'wp_enqueue_scripts', 'add_theme_stylesheets' );
  * Add Theme JS scripts
  */
 function add_theme_scripts() {
-	wp_enqueue_script( 'app', get_template_directory_uri() . '/assets/js/app.js', array( 'jquery' ), '1.0', true );
+	if ( ENV === 'production' ) {
+		wp_enqueue_script( 'app', get_template_directory_uri() . '/assets/js/app.js.gz', array( 'jquery' ), '1.0', true );
+	} else {
+		wp_enqueue_script( 'app', get_template_directory_uri() . '/assets/js/app.js', array( 'jquery' ), '1.0', true );
+	}
 }
 add_action( 'wp_enqueue_scripts', 'add_theme_scripts' );
 

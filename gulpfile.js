@@ -26,7 +26,10 @@ gulp.task('css', function () {
         .pipe( $.postcss([autoprefixer(['last 2 version', 'safari 8'])]) )
         .pipe( $.cleanCss() )
         .pipe( $.if( is_dev, $.sourcemaps.write() ) )
-        .pipe( gulp.dest('./') )
+		.pipe( gulp.dest('./') )
+		.pipe( $.gzip() )
+		.pipe( gulp.dest('./') )
+		.pipe( $.if( !is_dev, $.gzip(), gulp.dest('./') ) ) // if production, create a gzip file
         .pipe( browserSync.reload({ stream: true }) );
 });
 
@@ -38,7 +41,9 @@ gulp.task('rtl', function () {
         .pipe( $.postcss([autoprefixer(['last 2 version', 'safari 8'])]) )
         .pipe( $.cleanCss() )
         .pipe( $.if( is_dev, $.sourcemaps.write() ) )
-        .pipe( gulp.dest('./') )
+		.pipe( gulp.dest('./') )
+		.pipe( $.gzip() )
+		.pipe( gulp.dest('./') )
         .pipe( browserSync.reload({ stream: true }) );
 });
 
@@ -59,7 +64,9 @@ gulp.task('js', function () {
             presets: ['@babel/env']
         }))
         .pipe( $.if( is_dev, $.sourcemaps.write(), $.uglify() ) )
-        .pipe( gulp.dest('assets/js') )
+		.pipe( gulp.dest('assets/js') )
+		.pipe( $.gzip() ) // if production, create a gzip file
+		.pipe( gulp.dest('assets/js') )
         .pipe( browserSync.reload({ stream: true }));
 });
 
