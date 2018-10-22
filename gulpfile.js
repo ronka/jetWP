@@ -28,7 +28,7 @@ function buildCompress(done) {
         .pipe($.postcss([autoprefixer(config.browsers)]))
         .pipe($.cleanCss())
         .pipe(sourcemaps.write())
-        .pipe($.rename(config.prod.names.css +'.css'))
+        .pipe($.rename(config.prod.names.css.ltr +'.css'))
         .pipe(gulp.dest(config.prod.paths.css))
         .pipe($.cssmin())
         .pipe($.rename({suffix: '.min'}))
@@ -43,7 +43,7 @@ function buildCompress(done) {
         .pipe($.postcss([autoprefixer(config.browsers)]))
         .pipe($.cleanCss())
         .pipe(sourcemaps.write())
-        .pipe($.rename(config.prod.names.css + '.css'))
+        .pipe($.rename(config.prod.names.css.rtl + '.css'))
         .pipe(gulp.dest(config.prod.paths.css))
         .pipe($.cssmin())
         .pipe($.rename({suffix: '.min'}))
@@ -77,11 +77,11 @@ function buildGzip(done) {
             .pipe($.gzip({append: true}))
             .pipe(gulp.dest(config.prod.paths.js));
 
-        gulp.src(config.prod.paths.css + config.prod.names.css + '.min.css')
+        gulp.src(config.prod.paths.css + config.prod.names.css.ltr + '.min.css')
             .pipe($.gzip({append: true}))
             .pipe(gulp.dest(config.prod.paths.css));
 
-        gulp.src(config.prod.paths.css + 'rtl.min.css')
+        gulp.src(config.prod.paths.css + config.prod.names.css.rtl + '.min.css')
             .pipe($.gzip({append: true}))
             .pipe(gulp.dest(config.prod.paths.css));
 

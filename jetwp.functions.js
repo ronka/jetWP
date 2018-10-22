@@ -13,9 +13,12 @@ module.exports = {
   },
   getCompiledAssets: function() {
     return [
-      config.prod.paths.css + config.prod.names.css + '.css',
-      config.prod.paths.css + config.prod.names.css + '.min.css',
-      config.prod.paths.css + config.prod.names.css + '.min.css.gz',
+      config.prod.paths.css + config.prod.names.css.ltr + '.css',
+      config.prod.paths.css + config.prod.names.css.ltr + '.min.css',
+      config.prod.paths.css + config.prod.names.css.ltr + '.min.css.gz',
+      config.prod.paths.css + config.prod.names.css.rtl + '.css',
+      config.prod.paths.css + config.prod.names.css.rtl + '.min.css',
+      config.prod.paths.css + config.prod.names.css.rtl + '.min.css.gz',
       config.prod.paths.js + config.prod.names.js + '.js',
       config.prod.paths.js + config.prod.names.js + '.min.js',
       config.prod.paths.js + config.prod.names.js + '.min.js.gz',

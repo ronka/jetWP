@@ -13,7 +13,10 @@ module.exports = {
   },
   prod: {
     names: {
-      css: 'dist',
+      css: {
+        ltr: 'dist',
+        rtl: 'rtl'
+      },
       js: 'dist'
     },
     paths: {
