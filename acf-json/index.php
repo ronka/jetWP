@@ -1,6 +1,6 @@
 <?php
 /**
- * ACF loca json folder
+ * ACF local json folder
  *
  * @category   Backup
  * @package    WordPress
