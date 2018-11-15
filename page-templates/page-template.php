@@ -1,11 +1,20 @@
-<?php /* Template Name: Template Page */ get_header(); ?>
+<?php
+/**
+ * Template Name: Template Page
+ *
+ * @category   Template
+ * @package    WordPress
+ * @since      1.0.0
+ */
 
-  <main id="mainContent">
+get_header(); ?>
 
-    <div class="container">
-      
-    </div><!-- .container -->
+	<main id="mainContent">
 
-  </main><!-- #main-content -->
+		<div class="container">
+
+		</div><!-- .container -->
+
+	</main><!-- #main-content -->
 
 <?php get_footer(); ?>
